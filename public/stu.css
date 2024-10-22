@@ -1,0 +1,343 @@
+/* GENERAL BODY STYLES */
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: rgb(10, 73, 78);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* NAVIGATION BAR */
+nav {
+  height: 80px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: rgb(4, 50, 53);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.mainlogo1 {
+  width: 60px; /* Adjusted width for responsiveness */
+  height: auto;
+}
+
+label.logo {
+  color: white;
+  font-size: 30px; /* Adjusted for smaller screens */
+  line-height: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin-left: 15px;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 18px; /* Adjusted for responsiveness */
+  text-transform: uppercase;
+  padding: 7px 10px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #6d9475;
+  transition: 0.5s;
+  opacity: 100%;
+}
+
+#pstalk {
+  font-size: 30px; /* Adjusted for responsiveness */
+}
+
+/* MARQUEE */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #ccc;
+}
+
+.marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* HEADING */
+.HEADING {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 70px;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-image: url('images/wall.jpg');
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center 30%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 804px;
+  position: relative;
+  opacity: 80%;
+}
+
+.HEADING p {
+  color: white;
+}
+
+/* ABOUT SECTION */
+.about {
+  height: 550px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+#ab {
+  font-size: 20px;
+  color: cadetblue;
+  text-align: center;
+  padding: 10px 0px;
+  font-family: "montserrat-bold", sans-serif;
+}
+
+.abtxt {
+  font-size: 20px;
+  font-family: "librebaskerville-bold", serif;
+  text-align: justify;
+  line-height: 2;
+  word-spacing: 5;
+  padding: 0px 250px;
+}
+
+#b1 {
+  color: rgb(104, 137, 138);
+}
+
+#about h2::before {
+  display: block;
+  content: "";
+  width: 3px;
+  height: 5.6rem;
+  background-color: rgba(149, 149, 149, 0.7);
+  margin: 0 auto 2.4rem;
+}
+
+/* GALLERY SECTION */
+.gallery {
+  background-color: rgba(98, 74, 38, 0.3);
+  color: white;
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.img1 {
+  width: 100%; /* Make images responsive */
+  max-width: 200px;
+  height: auto;
+  margin: 10px;
+}
+
+.imgnextline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.img1:hover {
+  background-color: #ddd;
+  transition-duration: 1000ms;
+  transform: scale(1.75);
+}
+
+/* SEPARATOR */
+.separatorgallery {
+  display: block;
+  content: "";
+  width: 50px;
+  height: 3px;
+  background-color: rgba(149, 89, 89, 0.7);
+  margin: 0 auto 30px;
+}
+
+.WhatsUph3 {
+  font-size: 30px;
+  text-align: center;
+  padding: 10px 0px;
+  color: rgb(255, 255, 255);
+  font-family: "montserrat-bold", sans-serif;
+}
+
+.text-Whats {
+  font-size: 20px;
+  font-family: "librebaskerville-bold", serif;
+  text-align: justify;
+  line-height: 2;
+  word-spacing: 5;
+  padding: 0px 250px;
+  color: #ffffff;
+}
+
+/* LOGO MARQUEE */
+.logo-marquee {
+  background-color: rgb(255, 255, 255);
+  height: 20px;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-marquee a {
+  text-decoration: none;
+  color: #333;
+}
+
+.logo-marquee img {
+  display: inline-block;
+  margin-right: 90px;
+  transition: transform 0.3s;
+}
+
+.logo-marquee img:hover {
+  transform: translateY(-5px);
+}
+
+/* FOOTER CONTACTS */
+.moto {
+  color: white;
+  padding-bottom: 20px;
+  padding-left: 70px;
+  font-size: 22px;
+  padding-top: 20px;
+  background-color: rgb(59, 103, 83);
+}
+
+.contact-logo {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.social {
+  text-decoration: none;
+  color: white;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+/* Mobile devices (up to 600px) */
+@media only screen and (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .mainlogo1 {
+    width: 40px; /* Smaller logo for mobile */
+  }
+
+  label.logo {
+    font-size: 24px; /* Adjusted size for mobile */
+  }
+
+  nav ul li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+  }
+
+  .HEADING {
+    font-size: 40px; /* Adjust for mobile */
+    padding: 50px 10px;
+  }
+
+  .gallery {
+    padding: 10px;
+  }
+
+  .img1 {
+    width: 100%; /* Full width images on mobile */
+    max-width: 100px;
+  }
+
+  .imgnextline {
+    flex-direction: column;
+  }
+
+  .abtxt, .text-Whats {
+    padding: 10px;
+    font-size: 16px; /* Smaller text for mobile */
+  }
+}
+
+/* Tablets (600px to 768px) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  label.logo {
+    font-size: 28px;
+  }
+
+  .img1 {
+    max-width: 150px; /* Adjusted for tablets */
+  }
+
+  .abtxt, .text-Whats {
+    padding: 0px 50px;
+    font-size: 18px; /* Adjusted font for tablets */
+  }
+
+  .HEADING {
+    padding: 60px 20px;
+  }
+}
+
+/* Large desktops (above 1200px) */
+@media only screen and (min-width: 1200px) {
+  .HEADING {
+    font-size: 70px;
+  }
+
+  .img1 {
+    max-width: 250px; /* Larger image sizes for desktops */
+  }
+
+  .abtxt, .text-Whats {
+    padding: 0px 300px;
+    font-size: 22px;
+  }
+}

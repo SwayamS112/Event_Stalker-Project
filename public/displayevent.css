@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(234, 231, 227);
+    color: black; /* Default text color */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav {
+    height: 80px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: rgb(4, 50, 53);
+}
+
+.mainlogo1 {
+    width: 55px;
+    height: 55px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+label.logo {
+    color: white;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    padding: 0px 20px;
+    font-weight: bold;
+}
+
+.regword {
+    font-size: 64px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.regnext {
+    font-size: 40px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.separator {
+    display: block;
+    content: "";
+    width: 450px;
+    height: 2.5px;
+    background-color: rgba(27, 2, 2, 0.7);
+    margin: 0 auto 30px;
+}
+
+.banner {
+    background-image: linear-gradient(to right, rgb(79, 140, 119), rgb(135, 143, 105));
+    padding: 50px;
+}
+
+#eventList { /* Changed from #eventlist to #eventList to match HTML */
+    font-size: 20px;
+    padding: 15px;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
