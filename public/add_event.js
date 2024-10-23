@@ -30,15 +30,12 @@ function addEvent() {
             link: registrationLink
         };
 
-        // Fetch existing events from localStorage
         var events = JSON.parse(localStorage.getItem("events")) || [];
-        // Add new event to the events array
         events.push(newEvent);
-        // Store the updated events array back to localStorage
         localStorage.setItem("events", JSON.stringify(events));
 
         alert("Event added successfully!");
-        displayEvents(); // Display events after adding
+        displayEvents(); 
     };
 
     if (eventLogo) {
@@ -97,10 +94,9 @@ function displayEvents() {
 
 function deleteEvent(index) {
     var events = JSON.parse(localStorage.getItem("events")) || [];
-    events.splice(index, 1); // Remove the event from the array
-    localStorage.setItem("events", JSON.stringify(events)); // Update localStorage
-    displayEvents(); // Re-render the event list
+    events.splice(index, 1);
+    localStorage.setItem("events", JSON.stringify(events)); 
+    displayEvents(); 
 }
 
-// Ensure the events are displayed when the page loads
 displayEvents();

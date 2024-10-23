@@ -1,7 +1,6 @@
 const loginButton = document.getElementById("login-button");
 const userTypeInput = document.getElementsByName("user-type");
 
-// Define user credentials for students and staff
 const studentCredentials = [
   { email: 'soodswayam41@gmail.com', password: '123456' },
   { email: 'swayam1424.be22@chitkarauniversity.edu.in', password: '123456' }
@@ -34,7 +33,6 @@ loginButton.addEventListener("click", (event) => {
     userCredentials = staffCredentials;
   }
 
-  // Check if entered credentials match any of the stored credentials
   for (const user of userCredentials) {
     if (user.email === email && user.password === password) {
       validUser = true;
@@ -43,7 +41,6 @@ loginButton.addEventListener("click", (event) => {
   }
 
   if (validUser) {
-    // Redirect based on user type
     if (selectedUserType === 'student') {
       window.location.href = 'stu.html';
     } else if (selectedUserType === 'staff') {

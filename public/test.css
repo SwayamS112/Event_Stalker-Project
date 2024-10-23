@@ -11,15 +11,15 @@ nav {
   background-size: cover;
   background-position: center;
   background-color: rgb(4, 50, 53);
-  display: flex; /* Flexbox layout */
-  align-items: center; /* Vertically center the content */
-  justify-content: space-between; /* Space between logo and list */
-  padding: 0 20px; /* Add padding for some spacing */
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 20px;
 }
 
 .mainlogo1 {
-  width: 80px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
+  width: 80px; 
+  height: auto
 }
 
 label.logo {
@@ -33,13 +33,13 @@ label.logo {
 
 ul {
   list-style: none;
-  display: flex; /* Flexbox for horizontal layout */
+  display: flex;
   margin: 0;
   padding: 0;
 }
 
 nav ul li {
-  margin-left: 20px; /* Space between menu items */
+  margin-left: 20px;
 }
 
 nav ul li a {

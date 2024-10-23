@@ -6,7 +6,7 @@
 
 body {
   display: flex;
-  background-image: url('/images/wall.jpg'); /* Updated path */
+  background-image: url('/public/images/wall.jpg'); /* Updated path */
   background-size: cover;
   align-items: center;
   justify-content: center;
@@ -63,7 +63,7 @@ form {
   position: absolute;
   top: 50%;
   left: 10px;
-  color: #555;
+  color: #ff0000;
   font-size: 16px;
   transform: translateY(-50%);
   pointer-events: none;
@@ -74,20 +74,6 @@ form {
   font-size: 15px;
   top: 10px;
   color: #2980b9;
-}
-
-.forget {
-  display: flex;
-  align-items: center;
-}
-#remember {
-  accent-color: #2980b9;
-}
-
-.forget label {
-  display: flex;
-  align-items: center;
-  color: #fff;
 }
 
 button {
@@ -106,18 +92,17 @@ button:hover {
   background: #6dd5fa;
 }
 
-
-/* Existing styles remain unchanged */
-
 .user-type {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  color: #ddd;
 }
 
 .user-type input {
   margin-right: 5px;
-  margin-left: 50px
+  margin-left: 50px;
+  color:white;
 }
 
 #student {
@@ -125,11 +110,11 @@ button:hover {
 }
 
 input[type="radio"] {
-  accent-color: #ff6347; /* Change this to the desired color */
+  accent-color: #ff6347;
 }
 
 input[type="radio"]:checked {
-  accent-color: #000000; /* Change this to the desired color */
+  accent-color: #000000; 
 }
 
 /* drop-down */

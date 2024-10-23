@@ -1,4 +1,4 @@
-/* GENERAL BODY STYLES */
+/* GENERAL BODY*/
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: rgb(10, 73, 78);
@@ -22,13 +22,13 @@ nav {
 }
 
 .mainlogo1 {
-  width: 60px; /* Adjusted width for responsiveness */
+  width: 60px;
   height: auto;
 }
 
 label.logo {
   color: white;
-  font-size: 30px; /* Adjusted for smaller screens */
+  font-size: 30px;
   line-height: 80px;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
@@ -48,7 +48,7 @@ nav ul li {
 
 nav ul li a {
   color: white;
-  font-size: 18px; /* Adjusted for responsiveness */
+  font-size: 18px;
   text-transform: uppercase;
   padding: 7px 10px;
   border-radius: 3px;
@@ -62,7 +62,7 @@ a:hover {
 }
 
 #pstalk {
-  font-size: 30px; /* Adjusted for responsiveness */
+  font-size: 30px;
 }
 
 /* MARQUEE */
@@ -258,7 +258,6 @@ a:hover {
 
 /* RESPONSIVE MEDIA QUERIES */
 
-/* Mobile devices (up to 600px) */
 @media only screen and (max-width: 600px) {
   nav ul {
     flex-direction: column;
@@ -266,11 +265,11 @@ a:hover {
   }
 
   .mainlogo1 {
-    width: 40px; /* Smaller logo for mobile */
+    width: 40px;
   }
 
   label.logo {
-    font-size: 24px; /* Adjusted size for mobile */
+    font-size: 24px; /*size for mobile */
   }
 
   nav ul li {
@@ -283,7 +282,7 @@ a:hover {
   }
 
   .HEADING {
-    font-size: 40px; /* Adjust for mobile */
+    font-size: 40px; /*for mobile */
     padding: 50px 10px;
   }
 
@@ -303,41 +302,5 @@ a:hover {
   .abtxt, .text-Whats {
     padding: 10px;
     font-size: 16px; /* Smaller text for mobile */
-  }
-}
-
-/* Tablets (600px to 768px) */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-  label.logo {
-    font-size: 28px;
-  }
-
-  .img1 {
-    max-width: 150px; /* Adjusted for tablets */
-  }
-
-  .abtxt, .text-Whats {
-    padding: 0px 50px;
-    font-size: 18px; /* Adjusted font for tablets */
-  }
-
-  .HEADING {
-    padding: 60px 20px;
-  }
-}
-
-/* Large desktops (above 1200px) */
-@media only screen and (min-width: 1200px) {
-  .HEADING {
-    font-size: 70px;
-  }
-
-  .img1 {
-    max-width: 250px; /* Larger image sizes for desktops */
-  }
-
-  .abtxt, .text-Whats {
-    padding: 0px 300px;
-    font-size: 22px;
   }
 }
