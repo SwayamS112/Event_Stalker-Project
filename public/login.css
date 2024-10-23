@@ -6,7 +6,7 @@
 
 body {
   display: flex;
-  background-image: url('/public/images/wall.jpg'); /* Updated path */
+  background-image: url('images/wall.jpg'); /* Updated path */
   background-size: cover;
   align-items: center;
   justify-content: center;
