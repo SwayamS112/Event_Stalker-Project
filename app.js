@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// mongo not working
+
+
 // Set up body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -14,7 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // MongoDB connection
 mongoose
-  .connect("mongodb://localhost:27017/form")
+  .connect("mongodb://localhost:27017/login-page")
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Error connecting to MongoDB:", err));
 
