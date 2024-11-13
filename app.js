@@ -27,25 +27,20 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
-// Registration route
+// Registration route example
 app.post("/register", async (req, res) => {
   const { email, password, userType } = req.body;
 
   try {
-    // Check if the email already exists in the Registration schema
-    const existingUser = await Registration.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
-    // Save the new user to the Registration schema
+    // Insert your registration logic here (e.g., saving to MongoDB)
     const newUser = new Registration({ email, password, userType });
     await newUser.save();
 
-    res.json({ message: "Registration successful" });
+    // Return a 200 response if registration is successful
+    return res.status(200).json({ message: "Registration successful" });
   } catch (err) {
-    console.error("Error registering user:", err);
-    res.status(500).json({ message: "Error registering user" });
+    console.error("Registration error:", err);
+    return res.status(500).json({ message: "Server error. Registration failed." });
   }
 });
 

@@ -17,9 +17,9 @@ document.getElementById("registration-form").addEventListener("submit", async (e
       const data = await response.json();
       if (response.status === 200) {
         alert("Registration successful!");
-        window.location.href = "/login"; // Redirect to login page after successful registration
+        window.location.href = "/";
       } else {
-        alert(data.message); // Show error message
+        alert(data.message);
       }
     } catch (error) {
       console.error("Error:", error);
