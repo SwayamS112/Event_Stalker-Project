@@ -3,29 +3,29 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Attractive Login Page</title>
-   <link rel="stylesheet" href="login.css"> <!-- Correct path -->
+   <title>Attractive Registration Page</title>
+   <link rel="stylesheet" href="registration.css">
 </head>
 
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h1>Login</h1>
-            <form id="login-form">
+    <div class="registration-container">
+        <div class="Registration-box">
+            <h1>Register Here</h1>
+            <form id="registration-form">
                 <div class="input-field">
                     <input type="email" id="email" name="email" required>
                     <label for="email">Email</label>
                 </div>
-
+            
                 <div class="input-field">
                     <input type="password" id="password" name="password" required>
                     <label for="password">Password</label>
                 </div>
-
+            
                 <div class="user-type">
-                    <input type="radio" id="student" name="user-type" value="student" checked>
+                    <input type="radio" id="student" name="userType" value="student" checked>
                     <label for="student">Student</label>
-                    <input type="radio" id="staff" name="user-type" value="staff">
+                    <input type="radio" id="staff" name="userType" value="staff">
                     <label for="staff">Staff</label>
                 </div>
 
@@ -38,14 +38,11 @@
                         <option value="LPU">LPU</option>
                     </select><br><br>
                 </section>
-                
-                <!-- The login button will trigger the JS logic -->
-                <button id="login-button" type="submit">Log In</button>
-                <button type="button" onclick="window.location.href='registration.html'">Register</button>
+
+                <button id="register-button" type="submit">Register</button>            
             </form>
         </div>
     </div>
-
-    <script src="login.js"></script>
+<script src="registration.js"></script>
 </body>
 </html>

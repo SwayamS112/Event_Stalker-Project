@@ -2,17 +2,14 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const Registration = require('./models/Registration');
+const Login = require('./models/Login');
 
 const app = express();
 
-// mongo not working
-
-
-// Set up body-parser for handling form submissions
+// Middleware setup
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
 // MongoDB connection
@@ -21,59 +18,96 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Error connecting to MongoDB:", err));
 
-// Define the user schema
-const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-  userType: String, // can be 'student' or 'staff'
-});
-
-// Create the user model
-const User = mongoose.model("User", userSchema);
-
 // Routes
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.post("/submit", (req, res) => {
-  const { email, password, userType } = req.body;
-
-  // Find the user in the MongoDB database
-  User.findOne({ email, password, userType }, (err, user) => {
-    if (err) {
-      res.status(500).send("Server error");
-    } else if (!user) {
-      res.status(400).send("Invalid credentials");
-    } else {
-      // Redirect to the respective page based on userType
-      if (userType === "student") {
-        res.redirect("/student");
-      } else if (userType === "staff") {
-        res.redirect("/staff");
-      }
-    }
-  });
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
-// Route for student page
+// Registration route
+app.post("/register", async (req, res) => {
+  const { email, password, userType } = req.body;
+
+  try {
+    // Check if the email already exists in the Registration schema
+    const existingUser = await Registration.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    // Save the new user to the Registration schema
+    const newUser = new Registration({ email, password, userType });
+    await newUser.save();
+
+    res.json({ message: "Registration successful" });
+  } catch (err) {
+    console.error("Error registering user:", err);
+    res.status(500).json({ message: "Error registering user" });
+  }
+});
+
+// Login route
+app.post("/login", async (req, res) => {
+  const { email, password, userType } = req.body;
+
+  try {
+    // Check if the user exists in the Registration schema
+    const user = await Registration.findOne({ email, userType });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Check if the password matches
+    if (user.password !== password) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Save the login attempt in the Login schema
+    const loginAttempt = new Login({
+      email,
+      password,
+      userType,
+      loginAttempts: [
+        {
+          timestamp: new Date(),
+          credentials: { email, password },
+        },
+      ],
+    });
+
+    await loginAttempt.save();
+
+    // Send a success response with user type to the client
+    return res.json({ message: "Login successful", userType });
+  } catch (err) {
+    console.error("Error during login:", err);
+    if (!res.headersSent) {
+      return res.status(500).json({ message: "Server error" });
+    }
+  }
+});
+
 app.get("/student", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "stu.html"));
 });
 
-// Route for staff page
 app.get("/staff", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "test.html"));
 });
 
-// Route for add_event page
-app.get("/add_event", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "addevent.html"));
+
+// Display Events page
+app.get("/Display_Events", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "displayevent.html"));
 });
 
-// Route for displayevent page
-app.get("/display_event", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "displayevent.html"));
+// Add Events page
+app.get("/Add_Events", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "add_event.html"));
 });
 
 // Start the server

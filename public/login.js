@@ -1,52 +1,58 @@
-const loginButton = document.getElementById("login-button");
-const userTypeInput = document.getElementsByName("user-type");
+document.getElementById("login-form").addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent form from submitting normally
 
-const studentCredentials = [
-  { email: 'soodswayam41@gmail.com', password: '123456' },
-  { email: 'swayam1424.be22@chitkarauniversity.edu.in', password: '123456' }
-];
-
-const staffCredentials = [
-  { email: 'vanika30@gmail.com', password: '123456' },
-  { email: 'vanika1448.be22@chitkarauniversity.edu.in', password: '123456' }
-];
-
-loginButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  let selectedUserType = '';
-  for (let i = 0; i < userTypeInput.length; i++) {
-    if (userTypeInput[i].checked) {
-      selectedUserType = userTypeInput[i].value;
-      break;
-    }
-  }
-
+  // Get the email, password, and selected user type
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  let validUser = false;
-  let userCredentials = [];
-
-  if (selectedUserType === 'student') {
-    userCredentials = studentCredentials;
-  } else if (selectedUserType === 'staff') {
-    userCredentials = staffCredentials;
-  }
-
-  for (const user of userCredentials) {
-    if (user.email === email && user.password === password) {
-      validUser = true;
+  // Get the selected user type (student or staff)
+  let selectedUserType = '';
+  const userTypeInputs = document.getElementsByName('user-type');
+  for (let i = 0; i < userTypeInputs.length; i++) {
+    if (userTypeInputs[i].checked) {
+      selectedUserType = userTypeInputs[i].value;
       break;
     }
   }
 
-  if (validUser) {
-    if (selectedUserType === 'student') {
-      window.location.href = 'stu.html';
-    } else if (selectedUserType === 'staff') {
-      window.location.href = 'test.html';
+  // Validate inputs
+  if (!email || !password || !selectedUserType) {
+    alert('Please fill all fields!');
+    return;
+  }
+
+  try {
+    // Send login request to the server
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password, userType: selectedUserType })
+    });
+
+    if (!response.ok) {
+      console.error("Login request failed with status:", response.status);
+      const result = await response.json();
+      alert(result.message || "An error occurred during login.");
+      return;
     }
-  } else {
-    alert('Invalid email or password');
+
+    // Parse the response and handle successful login
+    const result = await response.json();
+
+    if (result.message === "Login successful") {
+      // Redirect user based on their userType
+      if (selectedUserType === "student") {
+        window.location.href = '/student'; // Redirect to the student page
+      } else if (selectedUserType === "staff") {
+        window.location.href = '/staff'; // Redirect to the staff page
+      }
+    } else {
+      alert(result.message || "An error occurred during login.");
+    }
+  } catch (error) {
+    console.error('Error during fetch:', error);
+    alert('An error occurred. Please try again.');
   }
 });
