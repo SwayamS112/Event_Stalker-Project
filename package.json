@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "event_stalker",
+=======
+  "name": "cho",
+>>>>>>> 1b98c2a067703abdcb86ad1250cf6d8e18a390d6
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
