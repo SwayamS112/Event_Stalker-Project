@@ -10,7 +10,7 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'Event_Stalker', 'public')));  // Corrected path here
+app.use(express.static(path.join(__dirname, 'Event_Stalker', 'public'))); 
 console.log('Resolved path to login.html:', path.join(__dirname, 'Event_Stalker', 'public', 'login.html'));
 
 // MongoDB connection
