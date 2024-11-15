@@ -1,0 +1,120 @@
+body {
+  background-color: rgba(246, 245, 245, 0.3);
+  background-image: url('images/logo2.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 50%;
+}
+
+.header {
+  height: 60px;
+  width: 100%;
+  background-color: rgba(26, 61, 63, 0.9);
+}
+
+#heading {
+  font-size: 25px;
+  padding: 0px 20px;
+  color: white;
+  line-height: 75px;
+}
+
+#cancel {
+  float: right;
+  font-size: 25px;
+  color: white;
+  margin-right: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#event {
+  float: right;
+  font-size: 25px;
+  color: white;
+  margin-right: 20px;
+  position: absolute;
+  right: 120px;
+  top: 10px;
+}
+
+#can, #eve {
+  text-decoration: none;
+  color: white;
+  border-radius: 8px;
+  padding: 0px 10px;
+}
+
+a:hover {
+  background: #6d9475;
+  transition: 0.5s;
+  opacity: 100%;
+}
+
+#first, #second {
+  font-size: 24px;
+}
+
+main {
+  padding: 20px;
+  font-size: 20px;
+  text-align: left;
+  align-items: center;
+}
+
+form {
+  padding-left: 30px;
+  padding-top: 9px;
+}
+
+.submit {
+  padding-left: 30px;
+  margin-bottom: 20px; /* Add some space below the submit section */
+}
+
+button {
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Updated to target the event list */
+#eventList {
+  margin-top: 20px; /* Add space above the event list */
+  padding: 10px;
+  border: 2px solid #151d08;
+}
+
+/* Dark mode styles */
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+/* University select styles */
+select {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+select option {
+  padding: 8px;
+}
+
+#selt {
+  font-size: 25px;
+}
+

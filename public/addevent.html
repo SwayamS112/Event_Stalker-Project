@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVENT ADDER</title>
+    <link rel="stylesheet" href="add_event.css">
+</head>
+<body>
+    <section class="header">
+        <div id="heading">
+            <h1>Add An Event</h1>
+            <div id="cancel">
+                <a id="can" href="test.html">Cancel</a>
+            </div>
+            <div id="event">
+                <a id="eve" href="displayevent.html">Uploaded Events</a>
+            </div>
+        </div>
+    </section>
+    <br>
+    <main>
+        <section class="department">
+            <b><label for="uni" id="selt">Select University:</label></b>
+            <select name="uni" id="uni">
+                <option value="Chitkara">Chitkara</option>
+                <option value="CU">CU</option>
+                <option value="PU">PU</option>
+                <option value="LPU">LPU</option>
+            </select><br><br>
+
+            <div id="first"><b>1. Department Details:</b></div>
+            <form id="eventForm">
+                <label for="department-name">Department Name:</label>
+                <input type="text" id="department-name" name="department-name" required><br><br>
+                <label for="owner">Head:</label>
+                <input type="text" id="owner" name="owner" required><br><br>
+        </section>
+        <section class="event">
+            <div id="event-details">
+                <div id="second"><b>2. Event Details:</b></div>
+                <label for="event-title">Event Title:</label>
+                <input type="text" id="eventName" name="event-title" required><br><br>
+                
+                <label for="location">Location:</label>
+                <input type="text" id="eventLocation" name="location" required><br><br>
+                
+                <label for="eventDate">Date and Time:</label>
+                <input type="datetime-local" id="eventDate" required><br><br>
+                
+                <label for="eventDescription">Description:</label>
+                <textarea id="eventDescription" placeholder="Event Description" required></textarea><br><br>
+                
+                <label for="event-logo">Event Poster:</label>
+                <input type="file" id="event-logo" name="event-logo" accept="image/*"><br><br>
+                
+                <label for="registrationLink">Registration Link:</label>
+                <input type="url" id="registrationLink" name="registrationLink" required><br><br>
+
+                <div class="user-type">
+                    <input type="radio" id="pri" name="user-type" value="pri">
+                    <label for="pri">Private</label>
+                    <input type="radio" id="pub" name="user-type" value="pub">
+                    <label for="pub">Public</label>
+                </div>
+            </div>
+        </section>
+        <section class="submit">
+            <button type="button" onclick="addEvent()">Upload</button>
+        </section>
+        <!-- Move event list under the submit button -->
+        <div id="eventList"></div> 
+        </form> 
+    </main>
+    <script src="add_event.js"></script>
+
+    <h1>Last Commit</h1>
+</body>
+</html>
