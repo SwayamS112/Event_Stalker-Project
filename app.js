@@ -4,14 +4,15 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Registration = require('./models/Registration');
 const Login = require('./models/Login');
+const Event = require('./models/Event');
 
+// Initialize the express app
 const app = express();
 
-// Middleware setup
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public'))); 
-console.log('Resolved path to login.html:', path.join(__dirname, 'public', 'login.html'));
+// Middleware setup - Ensure this is after app initialization
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' })); 
+app.use(bodyParser.json({ limit: '50mb' }));  // increase limit for JSON data
+app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection
 mongoose
@@ -21,8 +22,9 @@ mongoose
 
 // Root route to redirect to /login
 app.get('/', (req, res) => {
-  res.redirect('/login'); // Redirects to the login page
+  res.redirect('/login');
 });
+
 
 // Routes
 app.get('/login', (req, res) => {
@@ -36,7 +38,6 @@ app.get("/register", (req, res) => {
 // Registration route example
 app.post("/register", async (req, res) => {
   const { email, password, userType } = req.body;
-
   try {
     const newUser = new Registration({ email, password, userType });
     await newUser.save();
@@ -44,6 +45,42 @@ app.post("/register", async (req, res) => {
   } catch (err) {
     console.error("Registration error:", err);
     return res.status(500).json({ message: "Server error. Registration failed." });
+  }
+});
+
+// Event upload route (corrected to match frontend)
+app.post("/Add_Events", async (req, res) => {
+  const { university, department, head, name, description, location, date, logo, link } = req.body;
+
+  try {
+    const newEvent = new Event({ university, department, head, name, description, location, date, logo, link });
+    await newEvent.save();
+    res.status(201).send("Event added successfully.");
+  } catch (error) {
+    console.log("Error adding event:", error);
+    res.status(500).send("Internal server error.");
+  }
+});
+
+// New route to fetch events from the database
+app.get("/Display_Events", async (req, res) => {
+  try {
+    const events = await Event.find();  // Retrieve events from MongoDB
+    res.json(events);  // Return events as JSON
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    res.status(500).json({ message: "Failed to load events" });
+  }
+});
+
+// Add this route to app.js
+app.get('/api/events', async (req, res) => {
+  try {
+      const events = await Event.find(); // Assuming `Event` is your Mongoose model
+      res.json(events);
+  } catch (err) {
+      console.error("Error fetching events:", err);
+      res.status(500).send("Error fetching events");
   }
 });
 

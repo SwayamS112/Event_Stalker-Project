@@ -217,6 +217,12 @@ a:hover {
   color: #ffffff;
 }
 
+/* Area Registration */
+.area{
+height: 400px;
+background: wheat;
+}
+
 /* LOGO MARQUEE */
 .logo-marquee {
   background-color: rgb(255, 255, 255);
