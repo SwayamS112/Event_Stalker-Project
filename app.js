@@ -6,10 +6,8 @@ const Registration = require('./models/Registration');
 const Login = require('./models/Login');
 const Event = require('./models/Event');
 
-// Initialize the express app
 const app = express();
 
-// Middleware setup - Ensure this is after app initialization
 app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' })); 
 app.use(bodyParser.json({ limit: '50mb' }));  // increase limit for JSON data
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,7 +46,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Event upload route (corrected to match frontend)
+// Event upload route
 app.post("/Add_Events", async (req, res) => {
   const { university, department, head, name, description, location, date, logo, link } = req.body;
 
@@ -76,7 +74,7 @@ app.get("/Display_Events", async (req, res) => {
 // Add this route to app.js
 app.get('/api/events', async (req, res) => {
   try {
-      const events = await Event.find(); // Assuming `Event` is your Mongoose model
+      const events = await Event.find(); 
       res.json(events);
   } catch (err) {
       console.error("Error fetching events:", err);
@@ -99,19 +97,32 @@ app.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const loginAttempt = new Login({
-      email,
-      password,
-      userType,
-      loginAttempts: [
-        {
-          timestamp: new Date(),
-          credentials: { email, password },
-        },
-      ],
-    });
+    // Check if there's an existing login entry for the user
+    const existingLogin = await Login.findOne({ email, userType });
 
-    await loginAttempt.save();
+    if (existingLogin) {
+      // Update the loginAttempts array by adding a new attempt
+      existingLogin.loginAttempts.push({
+        timestamp: new Date(),
+        credentials: { email, password },
+      });
+      await existingLogin.save();
+    } else {
+      // Create a new login document if none exists
+      const newLoginAttempt = new Login({
+        email,
+        password,
+        userType,
+        loginAttempts: [
+          {
+            timestamp: new Date(),
+            credentials: { email, password },
+          },
+        ],
+      });
+      await newLoginAttempt.save();
+    }
+
     return res.json({ message: "Login successful", userType });
   } catch (err) {
     console.error("Error during login:", err);
@@ -121,7 +132,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Routes for other pages
+// Routes
 app.get("/student", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "stu.html"));
 });
@@ -130,17 +141,14 @@ app.get("/staff", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "test.html"));
 });
 
-// Display Events page
 app.get("/Display_Events", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "displayevent.html"));
 });
 
-// Add Events page
 app.get("/Add_Events", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "add_event.html"));
 });
 
-// Start the server
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
