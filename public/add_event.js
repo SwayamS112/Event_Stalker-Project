@@ -1,122 +1,39 @@
-// add_event.js
-
 function addEvent() {
-    var universityName = document.getElementById("uni").value;
-    var departmentName = document.getElementById("department-name").value;
-    var owner = document.getElementById("owner").value;
-    var eventName = document.getElementById("eventName").value;
-    var eventDescription = document.getElementById("eventDescription").value;
-    var eventLocation = document.getElementById("eventLocation").value;
-    var eventDate = document.getElementById("eventDate").value;
-    var eventLogo = document.getElementById("event-logo").files[0];
-    var registrationLink = document.getElementById("registrationLink").value;
-  
-    if (eventName.trim() === "" || eventDate === "" || eventLocation.trim() === "" || eventDescription.trim() === "") {
-      alert("Please fill out all required fields.");
-      return;
-    }
-  
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      var logoDataURL = e.target.result;
-  
-      var eventData = {
-        university: universityName,
-        department: departmentName,
-        head: owner,
-        name: eventName,
-        description: eventDescription,
-        location: eventLocation,
-        date: eventDate,
-        logo: logoDataURL,
-        link: registrationLink
-      };
-  
-      fetch('/Add_Events', {  // Corrected the URL to /Add_Events
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(eventData)
-      })
-      .then(response => response.text())
-      .then(data => {
-        alert(data);
-        displayEvents();  // Refresh the event list
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Failed to add event.');
-      });
-    };
-  
-    if (eventLogo) {
-      reader.readAsDataURL(eventLogo);
-    } else {
-      alert("Please select an event poster.");
-    }
-  }
-  
-  function displayEvents() {
-    fetch('/Display_Events')  // Fetch events from the backend
-      .then(response => response.json())
-      .then(events => {
-        var eventList = document.getElementById("eventList");
-        eventList.innerHTML = "";
-  
-        events.forEach(function(event, index) {
-          var listItem = document.createElement("div");
-          listItem.style.display = "flex";
-          listItem.style.alignItems = "center";
-          listItem.style.marginBottom = "20px";
-          listItem.style.border = "1px solid #ccc";
-          listItem.style.padding = "10px";
-  
-          if (event.logo) {
-            var logo = document.createElement("img");
-            logo.src = event.logo;
-            logo.alt = "Event Logo";
-            logo.style.width = "100px";
-            logo.style.height = "100px";
-            logo.style.marginRight = "20px";
-            listItem.appendChild(logo);
-          }
-  
-          var eventDetails = document.createElement("div");
-          eventDetails.innerHTML = `
-            <strong>University Name:</strong> ${event.university}<br>
-            <strong>Department Name:</strong> ${event.department}<br>
-            <strong>Head:</strong> ${event.head}<br>
-            <strong>Event Name:</strong> ${event.name}<br>
-            <strong>Event Description:</strong> ${event.description}<br>
-            <strong>Event Time:</strong> ${event.date}<br>
-            <strong>Event Location:</strong> ${event.location}<br>
-            <strong>Registration Link:</strong> <a href="${event.link}" target="_blank">Register Here</a><br>
-          `;
-  
-          var deleteButton = document.createElement("button");
-          deleteButton.textContent = "Delete";
-          deleteButton.onclick = function() {
-            deleteEvent(index);
-          };
-  
-          eventDetails.appendChild(deleteButton);
-          listItem.appendChild(eventDetails);
-          eventList.appendChild(listItem);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching events:', error);
-        alert('Failed to load events.');
-      });
-  }
-  
-  function deleteEvent(index) {
-    var events = JSON.parse(localStorage.getItem("events")) || [];
-    events.splice(index, 1);
-    localStorage.setItem("events", JSON.stringify(events)); 
-    displayEvents(); 
-  }
-  
-  displayEvents();
-  
+    const formData = new FormData(); // Declare formData only once
+
+    // Append form data values
+    formData.append("university", document.getElementById("university").value);
+    formData.append("department", document.getElementById("department").value);
+    formData.append("head", document.getElementById("head").value);
+    formData.append("name", document.getElementById("eventName").value);
+    formData.append("description", document.getElementById("description").value);
+    formData.append("location", document.getElementById("location").value);
+    formData.append("date", document.getElementById("date").value);
+    formData.append("logo", document.getElementById("logo").files[0]); // File upload
+    formData.append("link", document.getElementById("registrationLink").value);
+
+    // Send the form data to the server
+    fetch("/Add_Events", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Failed to add the event.");
+        }
+        return response.text();
+    })
+    .then((message) => {
+        alert(message); // Show success message
+        clearForm(); // Clear the form after successful submission
+    })
+    .catch((error) => {
+        console.log("Error adding event:", error); // log the error
+        alert("Error adding event: " + error.message); // Display error message
+    });
+}
+
+// Function to reset the form after submission
+function clearForm() {
+    document.getElementById("eventForm").reset();
+}

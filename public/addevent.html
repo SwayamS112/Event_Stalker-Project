@@ -3,74 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVENT ADDER</title>
+    <title>Event Adder</title>
     <link rel="stylesheet" href="add_event.css">
 </head>
 <body>
-    <section class="header">
-        <div id="heading">
-            <h1>Add An Event</h1>
-            <div id="cancel">
-                <a id="can" href="test.html">Cancel</a>
-            </div>
-            <div id="event">
-                <a id="eve" href="displayevent.html">Uploaded Events</a>
-            </div>
-        </div>
-    </section>
-    <br>
+    <header>
+        <h1>Add An Event</h1>
+        <nav>
+            <a id="can" href="test.html">Cancel</a>
+            <a id="eve" href="displayevent.html">Uploaded Events</a>
+        </nav>
+    </header>
     <main>
-        <section class="department">
-            <b><label for="uni" id="selt">Select University:</label></b>
-            <select name="uni" id="uni">
-                <option value="Chitkara">Chitkara</option>
-                <option value="CU">CU</option>
-                <option value="PU">PU</option>
-                <option value="LPU">LPU</option>
-            </select><br><br>
-
-            <div id="first"><b>1. Department Details:</b></div>
-            <form id="eventForm">
-                <label for="department-name">Department Name:</label>
-                <input type="text" id="department-name" name="department-name" required><br><br>
-                <label for="owner">Head:</label>
-                <input type="text" id="owner" name="owner" required><br><br>
-        </section>
-        <section class="event">
-            <div id="event-details">
-                <div id="second"><b>2. Event Details:</b></div>
-                <label for="event-title">Event Title:</label>
-                <input type="text" id="eventName" name="event-title" required><br><br>
+        <form id="eventForm" autocomplete="on"> <!-- Add autocomplete attribute here -->
+            <fieldset>
+                <label for="university">University:</label>
+                <input type="text" id="university" name="university" autocomplete="off" required> <!-- Add autocomplete -->
+            </fieldset>
+            <fieldset>
+                <legend>Department Details</legend>
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" autocomplete="off" required><br> <!-- Add autocomplete -->
+                
+                <label for="head">Head:</label>
+                <input type="text" id="head" name="head" autocomplete="off" required> <!-- Add autocomplete -->
+            </fieldset>
+            <fieldset>
+                <legend>Event Details</legend>
+                <label for="eventName">Event Title:</label>
+                <input type="text" id="eventName" name="name" autocomplete="off" required><br> <!-- Add autocomplete -->
                 
                 <label for="location">Location:</label>
-                <input type="text" id="eventLocation" name="location" required><br><br>
+                <input type="text" id="location" name="location" autocomplete="off" required><br> <!-- Add autocomplete -->
                 
-                <label for="eventDate">Date and Time:</label>
-                <input type="datetime-local" id="eventDate" required><br><br>
+                <label for="date">Date and Time:</label>
+                <input type="datetime-local" id="date" name="date" required><br>
                 
-                <label for="eventDescription">Description:</label>
-                <textarea id="eventDescription" placeholder="Event Description" required></textarea><br><br>
+                <label for="description">Description:</label>
+                <textarea id="description" placeholder="Event Description" required></textarea><br>
                 
-                <label for="event-logo">Event Poster:</label>
-                <input type="file" id="event-logo" name="event-logo" accept="image/*"><br><br>
+                <label for="logo">Event Poster:</label>
+                <input type="file" id="logo" name="logo" accept="image/*"><br>
                 
                 <label for="registrationLink">Registration Link:</label>
-                <input type="url" id="registrationLink" name="registrationLink" required><br><br>
-
-                <div class="user-type">
-                    <input type="radio" id="pri" name="user-type" value="pri">
-                    <label for="pri">Private</label>
-                    <input type="radio" id="pub" name="user-type" value="pub">
-                    <label for="pub">Public</label>
+                <input type="url" id="registrationLink" name="link" autocomplete="off" required><br>
+                
+                <div>
+                    <label><input type="radio" name="user-type" value="pri"> Private</label>
+                    <label><input type="radio" name="user-type" value="pub"> Public</label>
                 </div>
-            </div>
-        </section>
-        <section class="submit">
+            </fieldset>
             <button type="button" onclick="addEvent()">Upload</button>
-        </section>
-        <!-- Move event list under the submit button -->
-        <div id="eventList"></div> 
-        </form> 
+        </form>
+        <section id="eventList" style="display: none;"></section>
     </main>
     <script src="add_event.js"></script>
 </body>

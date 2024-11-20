@@ -56,13 +56,103 @@ label.logo {
     padding: 50px;
 }
 
-#eventList { /* Changed from #eventlist to #eventList to match HTML */
-    font-size: 20px;
-    padding: 15px;
+/* Enhanced styling for event list container */
+#eventList {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Shows 2 events per line */
+    gap: 30px; /* Increased spacing between cards */
 }
 
+/* Individual event card styling */
+#eventList > div {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#eventList > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-image {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-info {
+    padding: 10px;
+}
+
+/* Event details styling */
+#eventList strong {
+    color: #6d9475;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+#eventList a {
+    display: inline-block;
+    background: #6d9475;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#eventList a:hover {
+    background: #5b7f64;
+}
+
+/* Dark mode support */
 /* Dark mode styles */
 body.dark-mode {
-    background-color: black;
+    background-color: #1a1a1a;
     color: white;
+}
+
+body.dark-mode nav {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode #eventList > div {
+    background: #2d2d2d;
+}
+
+
+body.dark-mode #eventList strong {
+    color: #8ab49d;
+}
+
+body.dark-mode #btn {
+    background-color: #2d2d2d;
+    color: white;
+    border: 1px solid #8ab49d;
+}
+
+body.dark-mode label.logo {
+    color: #ffffff;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 968px) {
+    #eventList {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
 }
