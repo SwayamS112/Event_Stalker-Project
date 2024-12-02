@@ -49,22 +49,6 @@
     </div>
 </div>
 
-
-    <!-- WHAT WE DOO THIS  -->
-    <div class="WhatsUp">
-        <h3 ><p class="WhatsUph3">WHAT WE DO</p></h3>
-        <div class="separatorgallery"></div>
-        <div class="text-Whats">
-           <p>We display the current and upcoming events that occur in our university. We also give access to add up the upcoming events only to the club president or staff.</p>
-        </div>
-</div>
-
-    <!-- Registered Events -->
-     <div class="area">
-        <marquee class="logo-marquee" width="100%" direction="left" scrollamount="8">
-</marquee>
-     </div>
-
 <!-- GALLERY  -->
 <div class="gallery" id="gallery">
     <h3 ><p >Gallery</p></h3>
@@ -82,11 +66,14 @@
     </div>
 </div>
 
-<!-- THE EVENTS THEIR PICS -->
+<!-- Display the Events  -->
+<div class="area-event">
+   <div class="event">
+     <marquee class="logo-marquee" width="100%" direction="left" scrollamount="8"></marquee>
+    </div>
+</div>
 
-
-<!-- LOGO MARQUEE  -->
-    
+<!-- LOGO MARQUEE  --> 
 <marquee class="logo-marquee" width="100%" direction="left" scrollamount="8">
     <a href="https://www.mathcounts.org/programs/national-math-club" target="_blank">
         <img src="images/maths.png" alt="Maths" height="100px" width="100px">
@@ -108,9 +95,7 @@
     </a>
 </marquee>
 
-
     <!-- CONTACTS DIVS -->
-
     <div class="moto">
       <div class="contact-logo"> <p><b>Event Stalker, Chitkara University</b></p>
         <p>Stalk | Participate | Win</p>
@@ -122,10 +107,13 @@
             </div>  
             <div class="mail">
             <a href="mailto:soodswayam41@gmail.com" target="_blank"><h4>soodswayam41@gmail.com</h4></a>
-                <!-- i make this to colour the link -->
                <style>a{color: azure; }</style>
             </div>
       </div>
     </div>
+    <script src="dis.js"></script>
+<script>
+  window.onload = fetchAndDisplayEvents;
+</script>
 </body>
 </html>

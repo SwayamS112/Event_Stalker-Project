@@ -6,28 +6,22 @@ const multer = require("multer");
 const Registration = require("./models/Registration");
 const Login = require("./models/Login");
 const Event = require("./models/Event");
-
 const app = express();
 
-// Set up multer for file upload
+// Configure multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, "public", "uploads");
-    cb(null, uploadPath);
+    cb(null, "public/uploads"); // Save files in the "uploads" directory
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Generate a unique filename
+    cb(null, Date.now() + path.extname(file.originalname)); // Rename file with timestamp
   },
 });
-
 const upload = multer({ storage });
 
-// Setup body-parser
 app.use(bodyParser.urlencoded({ extended: false, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
-
-// Serve static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
 mongoose
@@ -42,7 +36,7 @@ app.get("/", (req, res) => {
   res.redirect("/login");
 });
 
-// Serve login page
+// Login page
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
@@ -60,59 +54,55 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Add event route
+// Add an event
 app.post("/Add_Events", upload.single("logo"), async (req, res) => {
-  console.log("Request body:", req.body);  // Log form data
-  console.log("Uploaded file:", req.file); // Log file data
-
-  const { university, department, head, name, description, location, date, link } = req.body;
-  const logo = req.file ? req.file.filename : null; // Get the uploaded file's filename
-
   try {
-    const newEvent = new Event({
-      university,
-      department,
-      head,
-      name,
-      description,
-      location,
-      date,
-      logo, // File path of the uploaded logo
-      link
-    });
+    const eventData = {
+      name: req.body.name,
+      department: req.body.department,
+      head: req.body.head,
+      location: req.body.location,
+      date: req.body.date,
+      description: req.body.description,
+      link: req.body.link,
+      logo: req.file ? req.file.filename : "default-event-image.jpg",
+    };
 
+    const newEvent = new Event(eventData);
     await newEvent.save();
-    console.log("Event added successfully:", newEvent);
-    res.status(201).send("Event added successfully.");
+    res.send("Event added successfully!");
   } catch (error) {
-    console.log("Error adding event:", error); // Log detailed error message
-    res.status(500).send("Internal server error.");
+    console.error("Error adding event:", error);
+    res.status(500).json({ message: "Failed to add the event." });
   }
 });
 
+
 // Fetch all events
+// display event route
 app.get("/Display_Events", async (req, res) => {
   try {
     const events = await Event.find({});
-    console.log("Found events:", events); // Add this log
     res.json(events);
   } catch (error) {
     console.error("Error fetching events:", error);
-    res.status(500).json({ message: "Failed to load events" });
+    res.status(500).json({ message: "Failed to load events." });
   }
 });
 
-// Delete an event by ID
+
+// Delete an event
 app.delete("/Delete_Event/:id", async (req, res) => {
-  const eventId = req.params.id;
   try {
+    const eventId = req.params.id;
     await Event.findByIdAndDelete(eventId);
-    res.json({ message: "Event deleted successfully" });
+    res.json({ message: "Event deleted successfully!" });
   } catch (error) {
     console.error("Error deleting event:", error);
-    res.status(500).json({ message: "Error deleting event" });
+    res.status(500).json({ message: "Failed to delete event." });
   }
 });
+
 
 // Login route
 app.post("/login", async (req, res) => {
@@ -144,7 +134,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Serve pages for student and staff
+// Serve additional pages
 app.get("/student", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "stu.html"));
 });
@@ -153,7 +143,6 @@ app.get("/staff", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "test.html"));
 });
 
-// Serve the add events page
 app.get("/Add_Events", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "add_event.html"));
 });

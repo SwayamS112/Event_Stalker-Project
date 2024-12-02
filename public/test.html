@@ -22,16 +22,13 @@
         </ul>
     </nav>
     
-
           <!-- HEADING MARQUEE -->
-
           <div class="marquee-container">
             <span class="marquee" >Welcome to our website 'EVENT STALKER'. Start Exploring the events taking place in our university. Participate in it and win prizes.</span>
           </div>
 
 
 <!-- MAIN HEADING  -->
-
 <div class="HEADING">
 <p><b> EVENT STALKER</b></p>
 <p>CHITKARA UNIVERSITY (H.P.)</p>
@@ -52,15 +49,12 @@
     </div>
 </div>
 <section id="end">
-    <!-- WHAT WE DOO THIS  -->
-    <div class="WhatsUp">
-        <h3 ><p class="WhatsUph3">WHAT WE DO</p></h3>
-        
-        <div class="text-Whats">
-           <p>We display the current and upcoming events that occur in our university. We also give access to add up the upcoming events only to the club president or staff.</p>
-        </div>
-</div>
-
+  
+    <!-- Display the Events -->
+    <div class="area">
+        <marquee class="logo-marquee" width="100%" direction="left" scrollamount="8"></marquee>
+      </div>
+      
 
 <!-- GALLERY  -->
 <div class="gallery" id="gallery">
@@ -84,9 +78,7 @@
     Click <a href="addevent.html" target="_blank" class="linktonext">here</a> to add Event!
 </div>
 
-<!-- LOGO MARQUEE  -->
-    
-    
+<!-- LOGO MARQUEE  -->   
 <marquee class="logo-marquee" width="100%" direction="left" scrollamount="8">
     <a href="https://www.mathcounts.org/programs/national-math-club" target="_blank">
         <img src="images/maths.png" alt="Maths" height="100px" width="100px">
@@ -105,10 +97,7 @@
     </a>
 </marquee>
 
-
-
     <!-- CONTACTS DIVS -->
-
     <div class="moto">
         <div class="contact-logo"> <p><b>Event Stalker, Chitkara University</b></p>
           <p>Stalk | Participate | Win</p>
@@ -120,11 +109,14 @@
               </div>  
               <div class="mail">
               <a href="mailto:soodswayam41@gmail.com" target="_blank"><h4>soodswayam41@gmail.com</h4></a>
-                  <!-- i make this to colour the link -->
                  <style>a{color: azure; }</style>
               </div>
         </div>
       </div>
         </section>
+        <script src="dis.js"></script>
+<script>
+  window.onload = fetchAndDisplayEvents;
+</script>
 </body>
 </html>

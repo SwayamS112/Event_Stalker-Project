@@ -3,6 +3,7 @@ body{
   background-color:rgb(10, 73, 78);
   background-repeat: no-repeat;
   background-size: cover;
+    overflow-x: hidden; 
 }
 
 nav {
@@ -179,7 +180,7 @@ background-color: rgb(59, 103, 83);
 .social{
   text-decoration:none;
   color: white;
-/* word-spacing: 5px; */
+word-spacing: 5px;
 }
 
 .separatorgallery{

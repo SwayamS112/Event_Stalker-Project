@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema({
-  university: String,
   department: String,
   head: String,
   name: String,

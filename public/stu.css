@@ -6,11 +6,10 @@ body {
   background-size: cover;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  box-sizing: border-box; /* Include padding and border in width/height */
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-/* Ensure all elements respect box-sizing */
 *, *::before, *::after {
   box-sizing: inherit;
 }
@@ -26,7 +25,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  max-width: 100vw; /* Prevent overflow */
+  max-width: 100vw;
 }
 
 .mainlogo1 {
@@ -166,7 +165,7 @@ a:hover {
   padding: 20px;
   font-size: 20px;
   text-align: center;
-  overflow-x: hidden; /* Ensure no horizontal scroll */
+  overflow-x: hidden; 
 }
 
 .img1 {
@@ -217,37 +216,64 @@ a:hover {
   color: #ffffff;
 }
 
-/* Area Registration */
-.area{
-height: 400px;
-background: wheat;
+.area-event {
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  box-sizing: border-box;
 }
+
+.event-marquee {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: eventMarquee 30s linear infinite;
+}
+
+.event-marquee > div {
+  margin-right: 30px;
+  /* Add event content styles here */
+}
+
+@keyframes eventMarquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
 
 /* LOGO MARQUEE */
 .logo-marquee {
   background-color: rgb(255, 255, 255);
-  height: 20px;
-  width: 100%;
+  height: 100px;
   padding-top: 30px;
-  padding-bottom: 100px;
   overflow: hidden;
+  padding-bottom: 100px;
   display: flex;
   justify-content: space-between;
-}
-
-.logo-marquee a {
-  text-decoration: none;
-  color: #333;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .logo-marquee img {
-  display: inline-block;
-  margin-right: 90px;
-  transition: transform 0.3s;
+  max-height: 80px; /* Adjust the height as needed */
+  width: auto;
+  transition: transform 0.3s ease;
 }
 
 .logo-marquee img:hover {
-  transform: translateY(-5px);
+  transform: scale(1.2);
+}
+
+.logo-marquee a {
+  display: inline-block;
+  margin-right: 30px; /* Increase or decrease the spacing as needed */
+}
+
+@media (max-width: 768px) {
+  .logo-marquee img {
+    max-height: 40px; /* Adjust the height for smaller screens */
+  }
 }
 
 /* FOOTER CONTACTS */
@@ -314,6 +340,6 @@ background: wheat;
 
   .abtxt, .text-Whats {
     padding: 10px;
-    font-size: 16px; /* Smaller text for mobile */
+    font-size: 16px; 
   }
 }

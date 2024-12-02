@@ -56,14 +56,13 @@ label.logo {
     padding: 50px;
 }
 
-/* Enhanced styling for event list container */
 #eventList {
     max-width: 1400px;
     margin: 20px auto;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Shows 2 events per line */
-    gap: 30px; /* Increased spacing between cards */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
 }
 
 /* Individual event card styling */
@@ -150,7 +149,6 @@ body.dark-mode label.logo {
     color: #ffffff;
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 968px) {
     #eventList {
         grid-template-columns: 1fr; /* Single column on smaller screens */

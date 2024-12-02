@@ -1,5 +1,5 @@
 document.getElementById("login-form").addEventListener("submit", async (event) => {
-  event.preventDefault(); // Prevent form from submitting normally
+  event.preventDefault();
 
   // Get the email, password, and selected user type
   const email = document.getElementById('email').value;
@@ -22,7 +22,6 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
   }
 
   try {
-    // Send login request to the server
     const response = await fetch('/login', {
       method: 'POST',
       headers: {
@@ -42,11 +41,10 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
     const result = await response.json();
 
     if (result.message === "Login successful") {
-      // Redirect user based on their userType
       if (selectedUserType === "student") {
-        window.location.href = '/student'; // Redirect to the student page
+        window.location.href = '/student'; 
       } else if (selectedUserType === "staff") {
-        window.location.href = '/staff'; // Redirect to the staff page
+        window.location.href = '/staff'; 
       }
     } else {
       alert(result.message || "An error occurred during login.");
