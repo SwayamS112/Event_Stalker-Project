@@ -84,11 +84,15 @@ button:hover {
 
 
 #eventList > div {
+  width: 300px;
+  height: auto;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 #eventList > div:hover {
@@ -98,11 +102,11 @@ button:hover {
 
 #eventList img {
   max-width: 100%;
-  height: auto;
+  height: 250px;
   margin-bottom: 10px;
 }
 
-#eventList strong {
+#eventList strong {    
   color: #6d9475;
   display: inline-block;
   margin-bottom: 5px;
@@ -112,6 +116,13 @@ button:hover {
   margin-bottom: 10px;
   padding: 5px;
   border: 1px solid #ccc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#eventList div:hover{
+  transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(252, 163, 17, 0.8);
 }
 
 #eventList a {

@@ -67,34 +67,40 @@ label.logo {
 
 /* Individual event card styling */
 #eventList > div {
+    width: 400px;
+    height: 530px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#eventList > div:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+  }
+  #eventList div:hover{
+    transform: scale(1.0);
+      box-shadow: 0 0 20px rgba(252, 163, 17, 0.8);
+  }
 
 .event-image {
     width: 100%;
-    height: 200px;
-    margin-bottom: 15px;
-    overflow: hidden;
-    border-radius: 8px;
+  height: 300px; 
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .event-image img {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 .event-info {
     padding: 10px;
+    text-align: center;
+    font-size: 16px;
 }
 
 /* Event details styling */
@@ -102,6 +108,7 @@ label.logo {
     color: #6d9475;
     display: inline-block;
     margin-bottom: 5px;
+    font-size: 18px;
 }
 
 #eventList a {
@@ -119,7 +126,6 @@ label.logo {
     background: #5b7f64;
 }
 
-/* Dark mode support */
 /* Dark mode styles */
 body.dark-mode {
     background-color: #1a1a1a;
@@ -151,6 +157,6 @@ body.dark-mode label.logo {
 
 @media (max-width: 968px) {
     #eventList {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
+        grid-template-columns: 1fr; 
     }
 }
