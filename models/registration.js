@@ -4,7 +4,7 @@ const registrationSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true, // Ensures email is unique
+    unique: true,
     match: [/\S+@\S+\.\S+/, 'Please enter a valid email address'],
   },
   password: {
@@ -14,13 +14,17 @@ const registrationSchema = new mongoose.Schema({
   userType: {
     type: String,
     required: true,
-    enum: ["student", "staff"], // Ensure only "student" or "staff" are allowed
+    enum: ["student", "staff"],
   },
 });
 
-registrationSchema.set("timestamps", true); // Automatically tracks created and updated times
+registrationSchema.set("timestamps", true); 
 
-// Create the Registration model
-const Registration = mongoose.model("Registration", registrationSchema);
+savedEvents: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Event' 
+  }
+]
 
-module.exports = Registration;
+module.exports = mongoose.model("Registration", registrationSchema);

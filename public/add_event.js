@@ -49,29 +49,6 @@ function addEvent() {
   });
 }
 
-// Add an event
-app.post("/Add_Events", upload.single("logo"), async (req, res) => {
-  try {
-    const eventData = {
-      name: req.body.name,
-      department: req.body.department,
-      head: req.body.head,
-      location: req.body.location,
-      date: req.body.date,
-      description: req.body.description,
-      link: req.body.link,
-      logo: req.file ? req.file.filename : "default-event-image.jpg",
-    };
-
-    const newEvent = new Event(eventData);
-    await newEvent.save();
-    res.send("Event added successfully!");
-  } catch (error) {
-    console.error("Error adding event:", error);
-    res.status(500).json({ message: "Failed to add the event." });
-  }
-});
-
 function fetchAndDisplayEvents() {
   fetch("/Display_Events")
     .then(response => response.json())

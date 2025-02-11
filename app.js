@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const Registration = require("./models/Registration");
+const Registration = require("./models/registration");
 const Login = require("./models/Login");
 const Event = require("./models/Event");
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/login-page")
+mongoose.connect("mongodb://localhost:27017/login-page")
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
@@ -51,6 +51,31 @@ app.post("/register", async (req, res) => {
   } catch (err) {
     console.error("Registration error:", err);
     res.status(500).json({ message: "Server error. Registration failed." });
+  }
+});
+
+// Route to save an event for a user
+app.post('/savedEvents/:eventId', async (req, res) => {
+  const { eventId } = req.params;
+  const { userEmail } = req.body;
+
+  try {
+    const user = await Registration.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.savedEvents.includes(eventId)) {
+      return res.status(400).json({ message: 'Event already saved' }); 
+    }
+
+    user.savedEvents.push(eventId);
+    await user.save();
+
+    res.json({ message: 'Event saved successfully' });
+  } catch (error) {
+    console.error('Error saving event:', error);
+    res.status(500).json({ message: 'Failed to save event' });
   }
 });
 
@@ -82,7 +107,7 @@ app.post("/Add_Events", upload.single("logo"), async (req, res) => {
 // display event route
 app.get("/Display_Events", async (req, res) => {
   try {
-    const events = await Event.find({});
+    const events = await Event.find({}); 
     res.json(events);
   } catch (error) {
     console.error("Error fetching events:", error);

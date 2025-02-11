@@ -29,6 +29,10 @@ function displayEvents() {
               <strong>Registration Link:</strong> <a href="${event.link}" target="_blank">Register Here</a><br>
             </div>
           `;
+          const saveButton = document.createElement('button');
+          saveButton.textContent = "Save Event";
+          saveButton.addEventListener('click', () => saveEvent(event._id));
+          eventDetails.appendChild(saveButton); 
           listItem.appendChild(eventDetails);
           eventList.appendChild(listItem);
         });
@@ -38,7 +42,35 @@ function displayEvents() {
         alert("Failed to load events.");
       });
   }
-  
+
+  async function saveEvent(eventId) {
+    const userEmail = localStorage.getItem('userEmail'); 
+
+  if (!userEmail) {
+    alert("You need to be logged in to save an event!");
+    return;
+  }
+
+  try {
+    const response = await fetch(`/savedEvents/${eventId}`, { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userEmail })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert(data.message); // Display success message
+    } else {
+      alert(data.message); // Display error message from server
+    }
+  } catch (error) {
+    console.error('Error saving event:', error);
+    alert('An error occurred while saving the event.');
+  }
+}
 
 function fetchAndDisplayEvents() {
     fetch("/api/events")

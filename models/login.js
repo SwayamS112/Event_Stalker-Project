@@ -28,7 +28,7 @@ const loginSchema = new mongoose.Schema({
   ],
 });
 
-loginSchema.set("timestamps", true); // Automatically tracks createdAt and updatedAt fields
+loginSchema.set("timestamps", true);
 
 const Login = mongoose.model("Login", loginSchema);
 module.exports = Login;

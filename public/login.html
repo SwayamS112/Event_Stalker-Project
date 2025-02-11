@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Attractive Login Page</title>
-   <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
 </head>
-
 <body>
+    <div class="bg-wall"></div>
     <div class="login-container">
         <div class="login-box">
             <h1>Login</h1>
             <form id="login-form">
                 <div class="input-field">
-                    <input type="email" id="email" name="email" required>
                     <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
-
                 <div class="input-field">
-                    <input type="password" id="password" name="password" required>
                     <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
-
                 <div class="user-type">
-                    <input type="radio" id="student" name="user-type" value="student" checked>
+                    <input type="radio" id="student" name="user-type" value="student">
                     <label for="student">Student</label>
                     <input type="radio" id="staff" name="user-type" value="staff">
                     <label for="staff">Staff</label>
                 </div>
-
-                <section class="department">
-                    <b><label for="uni" id="selt">Select University:</label></b>
-                    <select name="uni" id="uni">
-                        <option value="Chitkara">Chitkara</option>
-                        <option value="CU">CU</option>
-                        <option value="PU">PU</option>
-                        <option value="LPU">LPU</option>
-                    </select><br><br>
-                </section>
-                <button id="login-button" type="submit">Log In</button><br>
+                <button id="login-button" type="submit">Log In</button>
                 <button type="button" onclick="window.location.href='registration.html'">Register</button>
             </form>
         </div>
     </div>
-
     <script src="login.js"></script>
 </body>
 </html>
+
+
+<!-- <section class="department">
+    <b><label for="uni" id="selt">Select University:</label></b>
+    <select name="uni" id="uni">
+        <option value="Chitkara">Chitkara</option>
+        <option value="CU">CU</option>
+        <option value="PU">PU</option>
+        <option value="LPU">LPU</option>
+    </select><br><br>
+</section> -->
